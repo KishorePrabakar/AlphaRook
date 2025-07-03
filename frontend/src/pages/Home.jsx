@@ -9,10 +9,29 @@ export default function Home() {
         return saved ? saved === "true" : false;
     });
 
-    const toggleDarkMode = () => {
-        setDarkMode(!darkMode);
-        document.documentElement.classList.toggle("dark", !darkMode);
-        localStorage.setItem("dark-mode", !darkMode);
+    const [soundTheme, setSoundTheme] = useState(() => {
+        const saved = localStorage.getItem("sound-theme");
+        return saved ? saved : "off";
+    });
+
+    const toggleSoundTheme = () => {
+        const next = soundTheme === "off" ? "on" : "off";
+        setSoundTheme(next);
+        localStorage.setItem("sound-theme", next);
+    };
+
+    const getSoundThemeClass = () => {
+        if (soundTheme === "off") return "text-gray-400";
+        if (soundTheme === "rain") return "text-blue-400";
+        if (soundTheme === "forest") return "text-green-400";
+        return "text-purple-400";
+    };
+
+    const getSoundThemeLabel = () => {
+        if (soundTheme === "off") return "Sound off";
+        if (soundTheme === "rain") return "Rain sounds";
+        if (soundTheme === "forest") return "Forest sounds";
+        return "Ambient sounds";
     };
 
     return (
@@ -26,7 +45,7 @@ export default function Home() {
                 <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48">
                 Play chess with friends in real-time
                 </p>
-                <div className="flex items-center mb-4">
+<div className="flex items-center mb-4">
                     <button
                         onClick={toggleDarkMode}
                         className={`inline-flex items-center py-1 px-2 rounded-lg ${darkMode ? 'text-gray-400' : 'text-blue-600'} hover:${darkMode ? 'text-gray-500' : 'bg-blue-100'} transition-colors`}
@@ -53,6 +72,15 @@ export default function Home() {
                         )}
                     </button>
                     <span className="ml-2 text-sm capitalize">{darkMode ? "Light" : "Dark"} mode</span>
+                </div>
+                <div className="flex items-center mb-4">
+                    <button
+                        onClick={toggleSoundTheme}
+                        className={`inline-flex items-center py-1 px-2 rounded-lg ${getSoundThemeClass()} hover:text-${getSoundThemeClass().replace('text-', 'bg-').replace('400', '300')} transition-colors`}
+                        aria-label="Toggle sound theme"
+                    >
+                        {getSoundThemeLabel()}
+                    </button>
                 </div>
                 <div className="flex items-center mb-4">
                     <NavLink to="/login">
