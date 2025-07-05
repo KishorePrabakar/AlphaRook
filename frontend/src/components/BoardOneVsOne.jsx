@@ -15,6 +15,7 @@ const darkSquareColor = "#b3b3b3";
 export default function BoardOneVsOne(props) {
     const [position, setPosition] = useState(props.position || "start");
     const [moveOptions, setMoveOptions] = useState([]);
+    const [lastMove, setLastMove] = useState(null);
     const [userName, setUserName] = useState(props.userName || "Player 1");
 
     useEffect(() => {
@@ -31,6 +32,21 @@ export default function BoardOneVsOne(props) {
         updateMoveOptions();
     }, [position]);
 
+    useEffect(() => {
+        // Parse last move from position fen or game state
+        // For simplicity, we'll track it via a prop if provided
+        const game = new chess();
+        game.load(position);
+        const lastMoveInFen = game.history({ verbose: true }).pop();
+        if (lastMoveInFen) {
+            setLastMove({
+                from: lastMoveInFen.from,
+                to: lastMoveInFen.to,
+                promotion: lastMoveInFen.promotion
+            });
+        }
+    }, [position]);
+
     const boardPerspective = () => {
         if (userName) {
           return userName == "Player 2" ? "black" : "white"
@@ -43,6 +59,16 @@ export default function BoardOneVsOne(props) {
             (square.charCodeAt(1) - '1'.charCodeAt(0)) % 2 === 0 :
             (square.charCodeAt(1) - '1'.charCodeAt(0)) % 2 !== 0;
         return isLight ? lightSquareColor : darkSquareColor;
+    };
+
+    const getSquareClass = (square) => {
+        if (!lastMove) return "";
+        const isLastMoveSource = square === lastMove.from;
+        const isLastMoveTarget = square === lastMove.to;
+        if (isLastMoveSource || isLastMoveTarget) {
+            return "last-move-square";
+        }
+        return "";
     };
 
     return (
@@ -61,6 +87,8 @@ export default function BoardOneVsOne(props) {
               showLegalMoves={moveOptions.length > 0 ? moveOptions : false}
               draggable
               position={position}
+              lastMove={lastMove}
+              moveClassNames={getSquareClass}
             />
           )}
         </ChessApp>
