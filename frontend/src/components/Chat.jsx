@@ -7,8 +7,6 @@ import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 
 import moment from "moment";
-import 'moment/dist/locale/pt-br'
-moment.locale('pt-br')
 
 const style = {
   position: 'absolute',

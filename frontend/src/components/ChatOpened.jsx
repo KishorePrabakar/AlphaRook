@@ -4,8 +4,6 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import CloseOutlinedIcon from '@mui/icons-material/CloseOutlined';
 
 import moment from "moment";
-import 'moment/dist/locale/pt-br'
-moment.locale('pt-br')
 
 
 export default function ChatOpened(props) {
