@@ -117,6 +117,11 @@ Frontend runs on `http://localhost:5173`.
 - [ ] Move history panel in algebraic notation
 - [ ] Spectator mode
 - [ ] Auto color swap on rematch
+- [ ] Resign button and draw offer / accept flow
+- [ ] Move takeback requests (both players must agree)
+- [ ] Premove support (queue next move before opponent responds)
+- [ ] Disconnect recovery — rejoin an ongoing game after refresh or connection drop
+- [ ] Pass-and-play local mode on a single device
 
 ### Chess Logic
 - [ ] AI opponent via Stockfish.js (WebAssembly)
@@ -124,19 +129,23 @@ Frontend runs on `http://localhost:5173`.
 - [ ] Post-game position analysis
 
 ### UX & Polish
-- [ ] Custom usernames before joining a room
 - [ ] Legal move indicators (dots on valid squares)
 - [ ] Highlight last move squares
 - [ ] Captured pieces display with material advantage
-- [ ] Board and piece themes
-- [ ] Sound themes
 - [ ] QR code to share and join a game room
+- [ ] Tap-to-move as alternative to drag-and-drop (mobile friendly)
+- [ ] Dark mode toggle
+- [ ] Keyboard accessibility for moves and navigation
 
 ### Competitive
 - [ ] Matchmaking queue (auto-pair players)
-- [ ] ELO rating system and leaderboard
-- [ ] Game persistence with a database
+- [ ] Quick Play — start a game and connect instantly with another random waiting player
+- [ ] Live online player count display; alert the joining player when 0 players are online
 - [ ] Player profiles with auth (JWT)
+
+### Fun & Novelty
+- [ ] Floating emoji reactions between players during the game
+- [ ] Victory animations — confetti, piece celebration effects
 
 ## License
 
