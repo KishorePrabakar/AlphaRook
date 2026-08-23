@@ -12,6 +12,7 @@ import Waiting from '../components/Waiting';
 
 import BoardOneVsOne from '../components/BoardOneVsOne.';
 import ChatOpened from '../components/ChatOpened';
+import LoadingScreen from '../components/LoadingScreen';
 import EndGameMessage from '../components/EndGameMessage';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -27,6 +28,7 @@ export default function Game() {
     const [showAlertMessage, setShowAlertMessage] = useState(false); // Exibir ou não;
     const [alertMessage, setAlertMessage] = useState(""); // Mensagem;
     const [typeAlertMessage, setTypeAlertMessage] = useState(''); // Tipo da mensagem: success, error, warning ou info;
+    const [isLoading, setIsLoading] = useState(true); // Loading state for splash screen
 
     const handleAlertMessage = (type, message) => {
         setShowAlertMessage(true);
@@ -151,26 +153,29 @@ export default function Game() {
 
     return (
     <div className="flex h-screen bg-gray-100 w-full justify-center items-center">
-
-        {webSocket === false ? (
-            <Lobby 
-                setWebSocket={setWebSocket}
-                handleAlertMessage={handleAlertMessage}
-                setCodeToShow={setCodeToShow}
-                setStartGame={setStartGame}
-                setUserName={setUserName}
-            />
+        {isLoading ? (
+            <LoadingScreen />
         ) : (
-            (webSocket !== false && startGame === false) ? (
-                <Waiting
-                    codeToShow={codeToShow}
-                    webSocket={webSocket}
+            webSocket === false ? (
+                <Lobby 
+                    setWebSocket={setWebSocket}
+                    handleAlertMessage={handleAlertMessage}
+                    setCodeToShow={setCodeToShow}
                     setStartGame={setStartGame}
                     setUserName={setUserName}
                 />
             ) : (
-                
-                <div className="flex flex-col md:flex-row">
+                (webSocket !== false && startGame === false) ? (
+                    <Waiting
+                        codeToShow={codeToShow}
+                        webSocket={webSocket}
+                        setStartGame={setStartGame}
+                        setUserName={setUserName}
+                    />
+                ) : (
+                    
+                    <div className="flex flex-col md:flex-row">
+                        ...
 
                     <BoardOneVsOne
                         userName={userName}
