@@ -16,6 +16,7 @@ WebSocket protocol additions required.
 | Single source of truth for game state | Frontend | Lift board/FEN/turn state into `Game.jsx` or a React context; components become pure views. |
 | Server-side room state object | Backend | Track players, colors, FEN, status, rematch flags per room in `server/room.go`. |
 | Protocol versioning convention | Both | Add `type` field to every WS message for forward compatibility. |
+| **Render-specific: Set environment variables** | Both | Backend: `PORT=8080`; Frontend: `VITE_BASE_URL_SERVER=https://alpharook-backend.onrender.com` |
 
 **Estimate:** 2–3 days
 
@@ -168,3 +169,12 @@ Week 5–6    Phase 5                (auth, AI, analysis)
 2. **Duplicate WS listeners** (existing bug) — will cause double moves/chat if not fixed in Phase 0.
 3. **Reconnect security** — rejoin tokens must be single-use and expire to prevent room hijacking.
 4. **Stockfish bundle size** — lazy-load the WASM worker only when vs-AI mode is opened.
+
+## Render-Specific Notes
+
+- **Backend**: Deploy as Go Web Service, set `PORT=8080` env var
+- **Frontend**: Deploy as Static Site, set `VITE_BASE_URL_SERVER` to backend URL
+- **Free tier**: 750hrs/month per service (sufficient for hobby project)
+- **Sleeping**: Services sleep after 15 min inactivity; first move "wakes" them (~30s delay)
+- **Custom domains**: Add `alpharook.com` later via Render dashboard
+- **Database**: Not needed for current feature set (in-memory + localStorage)

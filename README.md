@@ -20,7 +20,7 @@ A real-time multiplayer chess game built with Go and React.
 | Frontend | React 18 + Vite + Tailwind CSS |
 | Chess Logic | chess.js + chessboardjsx |
 | UI Components | Material UI (MUI) v5 |
-| Deployment | Vercel (frontend) |
+| Deployment | Render (backend + frontend) |
 
 ## Project Structure
 
@@ -58,27 +58,49 @@ alpharook/
 
 ## Setup
 
-### Backend
+### Backend (Render)
+
+1. Create a new **Web Service** on Render
+2. Connect your GitHub repository
+3. Set Build Command: `cd backend && go build -o server .`
+4. Set Start Command: `cd backend && ./server`
+5. Set Environment Variables (see below)
+6. Service will be at `https://your-service.onrender.com`
+
+### Frontend (Render)
+
+1. Create a new **Static Site** on Render
+2. Connect your GitHub repository
+3. Set Build Command: `cd frontend && npm install && npm run build`
+4. Set Publish Directory: `frontend/dist`
+5. Set Environment Variables (see below)
+6. Service will provide a URL like `https://your-site.onrender.com`
+
+### Environment Variables
+
+Both services need these variables:
+
+**Backend:**
+- `PORT` (optional, default 8080)
+
+**Frontend:**
+- `VITE_BASE_URL_SERVER=https://your-backend-service.onrender.com`
+
+> For local development, use `VITE_BASE_URL_SERVER=http://localhost:8080` in `frontend/.env.local`.
+
+### Local Development
 
 ```bash
+# Backend
 cd backend
-go mod download
 go run main.go
-```
 
-Server runs on `http://localhost:8080`.
-
-### Frontend
-
-```bash
+# Frontend  
 cd frontend
 npm install
 npm run dev
+# Frontend runs on http://localhost:5173
 ```
-
-Frontend runs on `http://localhost:5173`.
-
-> **Note:** Create a `frontend/.env.local` file and set `VITE_BASE_URL_SERVER=ws://localhost:8080` for local development. For production on Vercel, add `VITE_BASE_URL_SERVER=wss://your-backend-url.com` as an environment variable in the project settings.
 
 ## API / WebSocket Endpoints
 
