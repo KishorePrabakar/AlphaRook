@@ -135,19 +135,19 @@ npm run dev
 ## To-Do
 
 ### Gameplay
-- [ ] Chess clock (Bullet / Blitz / Rapid time controls)
-- [ ] Move history panel in algebraic notation
-- [ ] Spectator mode
-- [ ] Auto color swap on rematch
-- [ ] Resign button and draw offer / accept flow
-- [ ] Move takeback requests (both players must agree)
-- [ ] Premove support (queue next move before opponent responds)
-- [ ] Disconnect recovery — rejoin an ongoing game after refresh or connection drop
-- [ ] Pass-and-play local mode on a single device
+- [x] Chess clock (Bullet / Blitz / Rapid time controls)
+- [x] Move history panel in algebraic notation
+- [x] Spectator mode
+- [x] Auto color swap on rematch
+- [x] Resign button and draw offer / accept flow
+- [x] Move takeback requests (both players must agree)
+- [x] Premove support (queue next move before opponent responds)
+- [x] Disconnect recovery — rejoin an ongoing game after refresh or connection drop
+- [x] Pass-and-play local mode on a single device
 
 ### Chess Logic
-- [ ] AI opponent via Stockfish.js (WebAssembly)
-- [ ] Opening name explorer
+- [x] AI opponent via Stockfish.js (WebAssembly)
+- [x] Opening name explorer
 - [ ] Post-game position analysis
 
 ### UX & Polish
