@@ -123,7 +123,7 @@ export default function Game() {
           const newLocalMessages = [...usersMessages, message];
           setUsersMessages(newLocalMessages);
 
-          if (newMessagesReceived , 1) {
+          if (newMessagesReceived < 1) {
             setNewMessagesReceived(1)
           }
           
@@ -253,7 +253,7 @@ export default function Game() {
                 </div>
                 
             )
-        )}
+        ))}
 
 
         <Snackbar
