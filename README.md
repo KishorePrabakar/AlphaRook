@@ -62,8 +62,8 @@ alpharook/
 
 1. Create a new **Web Service** on Render
 2. Connect your GitHub repository
-3. Set Build Command: `cd backend && go build -o server .`
-4. Set Start Command: `cd backend && ./server`
+3. Set Build Command: `cd backend && go build -o alpha-server .`
+4. Set Start Command: `cd backend && ./alpha-server`
 5. Set Environment Variables (see below)
 6. Service will be at `https://your-service.onrender.com`
 
