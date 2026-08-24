@@ -14,6 +14,12 @@ export default function Home() {
         return saved ? saved : "off";
     });
 
+    const toggleDarkMode = () => {
+        const next = !darkMode;
+        setDarkMode(next);
+        localStorage.setItem("dark-mode", String(next));
+    };
+
     const toggleSoundTheme = () => {
         const next = soundTheme === "off" ? "on" : "off";
         setSoundTheme(next);
@@ -103,15 +109,6 @@ export default function Home() {
                         <KeyboardTabIcon style={{marginLeft: '8px'}}/>
                     </button>
                 </NavLink>
-                <NavLink to="/game">
-                    <button
-                        className="inline-flex w-full hover:bg-blue-600 justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300"
-                    >
-                        Play game
-                        <KeyboardTabIcon style={{marginLeft: '8px'}}/>
-                    </button>
-                </NavLink>
-                </div>
             </div>
         </div>
     )
