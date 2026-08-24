@@ -12,7 +12,6 @@ import Waiting from '../components/Waiting';
 
 import BoardOneVsOne from '../components/BoardOneVsOne.';
 import ChatOpened from '../components/ChatOpened';
-import LoadingScreen from '../components/LoadingScreen';
 import EndGameMessage from '../components/EndGameMessage';
 
 const Alert = React.forwardRef(function Alert(props, ref) {
@@ -28,7 +27,6 @@ export default function Game() {
     const [showAlertMessage, setShowAlertMessage] = useState(false); // Exibir ou não;
     const [alertMessage, setAlertMessage] = useState(""); // Mensagem;
     const [typeAlertMessage, setTypeAlertMessage] = useState(''); // Tipo da mensagem: success, error, warning ou info;
-    const [isLoading, setIsLoading] = useState(true); // Loading state for splash screen
 
     const handleAlertMessage = (type, message) => {
         setShowAlertMessage(true);
@@ -153,10 +151,7 @@ export default function Game() {
 
     return (
     <div className="flex h-screen bg-gray-100 w-full justify-center items-center">
-        {isLoading ? (
-            <LoadingScreen />
-        ) : (
-            webSocket === false ? (
+        {webSocket === false ? (
                 <Lobby 
                     setWebSocket={setWebSocket}
                     handleAlertMessage={handleAlertMessage}
@@ -253,7 +248,7 @@ export default function Game() {
                 </div>
                 
             )
-        ))}
+        )}
 
 
         <Snackbar
