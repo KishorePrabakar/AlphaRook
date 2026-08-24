@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import ErrorBoundary from './ErrorBoundary';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Game from './pages/Game';
 
 function App() {
   return (
